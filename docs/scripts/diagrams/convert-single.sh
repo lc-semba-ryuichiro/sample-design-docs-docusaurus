@@ -152,6 +152,9 @@ extract_format_from_path() {
 calculate_output_path() {
   local src_path="$1"
 
+  # パス正規化: バックスラッシュをフォワードスラッシュに変換
+  src_path="${src_path//\\//}"
+
   # src/ を output/ に置換
   local out_path
   out_path=$(echo "$src_path" | sed 's|/src/|/output/|')

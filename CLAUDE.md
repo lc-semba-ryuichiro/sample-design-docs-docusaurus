@@ -34,11 +34,20 @@ cd docs && pnpm typecheck
 # シェルスクリプトのテスト（BATS）
 cd docs && pnpm test:scripts
 
-# API ドキュメント生成（TypeDoc）
-pnpm docs:api
+# sample-react パッケージのテスト（Vitest）
+cd packages/sample-react && pnpm test
+
+# 全パッケージのテスト
+pnpm test
+
+# OpenAPI ドキュメント生成
+pnpm docs:openapi
 
 # 翻訳ファイル生成
 cd docs && pnpm docusaurus write-translations --locale en
+
+# リント・フォーマット（Biome）
+npx biome check .
 ```
 
 ## アーキテクチャ
@@ -84,18 +93,18 @@ cd docs && pnpm docusaurus write-translations --locale en
 
 ### 対応形式
 
-| 形式 | 拡張子 | 配置先 | 備考 |
-|------|--------|--------|------|
-| drawio | `.drawio.png` | `docs/static/diagrams/drawio/` | 変換不要（PNG画像かつ編集可能） |
-| PlantUML | `.puml` | `docs/static/diagrams/src/plantuml/` | SVGに変換 |
-| GraphViz | `.dot` | `docs/static/diagrams/src/graphviz/` | SVGに変換 |
-| D2 | `.d2` | `docs/static/diagrams/src/d2/` | SVGに変換 |
+| 形式       | 拡張子           | 配置先                                  | 備考                |
+| -------- | ------------- | ------------------------------------ | ----------------- |
+| drawio   | `.drawio.png` | `docs/static/diagrams/drawio/`       | 変換不要（PNG画像かつ編集可能） |
+| PlantUML | `.puml`       | `docs/static/diagrams/src/plantuml/` | SVGに変換            |
+| GraphViz | `.dot`        | `docs/static/diagrams/src/graphviz/` | SVGに変換            |
+| D2       | `.d2`         | `docs/static/diagrams/src/d2/`       | SVGに変換            |
 
 ### drawio図の作成・編集
 
 `.drawio.png` 形式は PNG 画像でありながら編集データを内包しているため、変換処理が不要。
 
-- **作成**: VS Code の Draw.io 拡張または draw.io Desktop で `.drawio.png` として保存
+- **作成**: VS Code の Draw\.io 拡張または draw\.io Desktop で `.drawio.png` として保存
 - **編集**: VS Code で直接開いて編集可能。保存時に PNG 画像部分が自動更新される
 - **参照**: `![図](/diagrams/drawio/xxx.drawio.png)` で直接参照
 
@@ -103,13 +112,13 @@ cd docs && pnpm docusaurus write-translations --locale en
 
 ```bash
 # krokiサーバー起動（PlantUML/GraphViz/D2変換に必要）
-pnpm kroki:up
+cd docs && pnpm kroki:up
 
 # kroki形式の変換
 cd docs && pnpm diagrams:kroki
 
 # krokiサーバー停止
-pnpm kroki:down
+cd docs && pnpm kroki:down
 ```
 
 ### 自動変換（pre-commit）
@@ -125,7 +134,7 @@ kroki形式（PlantUML, GraphViz, D2等）はコミット時に自動変換さ�
 
 ### 注意事項
 
-- **公開サーバー使用禁止**: kroki変換はローカルサーバー（`compose.yaml`）のみ使用
+- **公開サーバー使用禁止**: kroki変換はローカルサーバー（`docs/docker/compose.yaml`）のみ使用
 - **Docker必須**: krokiサーバーの実行に必要
 - **kroki CLI**: miseで管理（`mise install`でインストール）
 - **drawioは変換不要**: `.drawio.png` を直接配置・編集するため Docker 不要

@@ -33,12 +33,7 @@
 
 ### 前提条件
 
-| ツール     | バージョン | 備考                                    |
-| ------- | ----- | ------------------------------------- |
-| Node.js | 24.x  | `mise.toml` で管理                       |
-| pnpm    | 10.x  | `package.json` の `packageManager` で固定 |
-| Docker  | -     | kroki サーバーの実行に必要                      |
-| mise    | -     | 推奨（ツールバージョン管理）                        |
+環境要件は [README.md](./README.md#環境要件) を参照してください。
 
 ### セットアップ手順
 
@@ -59,17 +54,7 @@ cd docs && pnpm start
 
 ## プロジェクト構成
 
-pnpm workspace によるモノレポ構成です。
-
-```
-sample-design-docs-docusaurus/
-├── docs/                      # Docusaurus サイト（メインパッケージ）
-├── packages/
-│   ├── sample-react/          # @sample/react - React コンポーネントライブラリ
-│   └── openapi/               # @sample/openapi - OpenAPI 仕様ファイル
-├── compose.yaml               # Docker Compose（kroki サーバー用）
-└── .github/workflows/         # GitHub Actions
-```
+pnpm workspace によるモノレポ構成です。ディレクトリ構造は [README.md](./README.md#プロジェクト構成) を参照してください。
 
 ### pnpm workspace
 
@@ -194,17 +179,19 @@ pnpm test
 
 ### パッケージ固有のテスト
 
-| パッケージ                   | コマンド                                    | 説明                   |
-| ----------------------- | --------------------------------------- | -------------------- |
-| `docs`                  | `cd docs && pnpm test:scripts`          | BATS によるシェルスクリプトテスト  |
-| `packages/sample-react` | `cd packages/sample-react && pnpm test` | Vitest によるコンポーネントテスト |
+| パッケージ                   | コマンド                                    | 説明                     |
+| ----------------------- | --------------------------------------- | ---------------------- |
+| `docs`                  | `cd docs && pnpm test:scripts`          | BATS によるシェルスクリプトテスト    |
+| `packages/sample-react` | `cd packages/sample-react && pnpm test` | Vitest によるコンポーネントテスト   |
+| `packages/e2e`          | `cd packages/e2e && pnpm test`          | Playwright による E2E テスト |
 
 ## パッケージ固有のガイド
 
 各パッケージの詳細な開発ガイドは以下を参照してください。
 
-| パッケージ                   | ガイド                                                                      |
-| ----------------------- | ------------------------------------------------------------------------ |
-| `docs`                  | [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md) - ダイアグラム作成、i18n、ドキュメント構成等 |
-| `packages/sample-react` | [packages/sample-react/README.md](./packages/sample-react/README.md)     |
-| `packages/openapi`      | [packages/openapi/README.md](./packages/openapi/README.md)               |
+| パッケージ                   | ガイド                                                                                                      |
+| ----------------------- | -------------------------------------------------------------------------------------------------------- |
+| `docs`                  | [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md) - ダイアグラム作成、i18n、ドキュメント構成等                                 |
+| `packages/sample-react` | [packages/sample-react/CONTRIBUTING.md](./packages/sample-react/CONTRIBUTING.md) - テスト、コンポーネント追加、TypeDoc |
+| `packages/openapi`      | [packages/openapi/CONTRIBUTING.md](./packages/openapi/CONTRIBUTING.md) - 仕様ファイル作成、検証                     |
+| `packages/e2e`          | [packages/e2e/CONTRIBUTING.md](./packages/e2e/CONTRIBUTING.md) - E2E テスト実行、テストの書き方                       |

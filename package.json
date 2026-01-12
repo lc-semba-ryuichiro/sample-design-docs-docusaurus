@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "kroki:up": "docker compose up -d",
-    "kroki:down": "docker compose down",
     "test": "pnpm -r test",
     "docs:openapi": "pnpm --filter @sample/openapi build",
     "docs:openapi:clean": "pnpm --filter @sample/openapi clean"

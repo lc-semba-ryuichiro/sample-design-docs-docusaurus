@@ -49,7 +49,8 @@ sample-design-docs-docusaurus/
 ├── docs/                      # Docusaurus サイト（メインパッケージ）
 ├── packages/
 │   ├── sample-react/          # React コンポーネントライブラリ
-│   └── openapi/               # OpenAPI 仕様ファイル
+│   ├── openapi/               # OpenAPI 仕様ファイル
+│   └── e2e/                   # E2E テスト
 └── .github/workflows/         # GitHub Actions
 ```
 
@@ -58,6 +59,7 @@ sample-design-docs-docusaurus/
 | `docs/`                  | Docusaurus サイト本体              | [README](./docs/README.md)                  |
 | `packages/sample-react/` | React コンポーネントライブラリ（TypeDoc 用） | [README](./packages/sample-react/README.md) |
 | `packages/openapi/`      | OpenAPI 仕様ファイル管理              | [README](./packages/openapi/README.md)      |
+| `packages/e2e/`          | E2E テスト（Playwright）           | [README](./packages/e2e/README.md)          |
 
 ## 環境要件
 
@@ -70,16 +72,16 @@ sample-design-docs-docusaurus/
 
 ## 開発コマンド
 
-| コマンド                    | 説明                    |
-| ----------------------- | --------------------- |
-| `pnpm install`          | 依存関係のインストール           |
-| `mise install`          | ツールのインストール            |
-| `cd docs && pnpm start` | 開発サーバー起動              |
-| `cd docs && pnpm build` | ビルド                   |
-| `pnpm test`             | 全パッケージのテスト実行          |
-| `pnpm kroki:up`         | kroki サーバー起動          |
-| `pnpm kroki:down`       | kroki サーバー停止          |
-| `pnpm docs:api`         | API ドキュメント生成（TypeDoc） |
+| コマンド                         | 説明                    |
+| ---------------------------- | --------------------- |
+| `pnpm install`               | 依存関係のインストール           |
+| `mise install`               | ツールのインストール            |
+| `cd docs && pnpm start`      | 開発サーバー起動              |
+| `cd docs && pnpm build`      | ビルド                   |
+| `pnpm test`                  | 全パッケージのテスト実行          |
+| `cd docs && pnpm kroki:up`   | kroki サーバー起動          |
+| `cd docs && pnpm kroki:down` | kroki サーバー停止          |
+| `pnpm docs:api`              | API ドキュメント生成（TypeDoc） |
 
 詳細は [CONTRIBUTING.md](./CONTRIBUTING.md) を参照してください。
 

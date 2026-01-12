@@ -169,14 +169,14 @@ static/diagrams/src/plantuml/_templates/
 kroki 形式のソースファイルを SVG に変換するには、kroki サーバーが必要です。
 
 ```bash
-# 1. kroki サーバー起動（ルートディレクトリで実行）
-cd .. && pnpm kroki:up
+# 1. kroki サーバー起動
+pnpm kroki:up
 
 # 2. 変換実行
 pnpm diagrams:kroki      # kroki 対応フォーマット（PlantUML, Mermaid 等）
 
-# 3. サーバー停止（ルートディレクトリで実行）
-cd .. && pnpm kroki:down
+# 3. サーバー停止
+pnpm kroki:down
 ```
 
 > **Note**: drawio は `.drawio.png` を直接配置するため、変換コマンドは不要です。
@@ -196,7 +196,7 @@ cd .. && pnpm kroki:down
 
 ### 注意事項
 
-- **公開サーバー使用禁止**: kroki 変換はローカルサーバー（`compose.yaml`）のみ使用
+- **公開サーバー使用禁止**: kroki 変換はローカルサーバー（`docs/docker/compose.yaml`）のみ使用
 - **Docker 必須**: kroki サーバーの実行に必要
 - **kroki CLI**: mise で管理（`mise install` でインストール）
 - **自動変換**: kroki 形式（PlantUML, GraphViz, D2 等）はコミット時に自動変換される（lefthook 経由）
