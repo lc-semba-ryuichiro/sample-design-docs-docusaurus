@@ -4,6 +4,18 @@
 
 > このパッケージは TypeDoc による API ドキュメント自動生成のデモンストレーション用です。
 
+## 目次
+
+- [概要](#概要)
+- [提供コンポーネント](#提供コンポーネント)
+  - [Button](#button)
+  - [Card](#card)
+- [開発](#開発)
+  - [テスト](#テスト)
+  - [API ドキュメント生成](#api-ドキュメント生成)
+- [ディレクトリ構成](#ディレクトリ構成)
+- [技術スタック](#技術スタック)
+
 ## 概要
 
 このパッケージは、TypeDoc による API ドキュメント自動生成のデモンストレーション用として作成されたサンプルコンポーネント集です。
@@ -24,13 +36,13 @@ import { Button } from '@sample/react';
 
 **Props:**
 
-| Prop | 型 | デフォルト | 説明 |
-|------|------|---------|------|
-| `label` | `string` | - | ボタンに表示するラベルテキスト |
-| `onClick` | `() => void` | - | クリック時のコールバック関数 |
-| `variant` | `'primary' \| 'secondary' \| 'danger'` | `'primary'` | ボタンのスタイルバリエーション |
-| `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | ボタンのサイズ |
-| `disabled` | `boolean` | `false` | 無効状態 |
+| Prop       | 型                                      | デフォルト       | 説明              |
+| ---------- | -------------------------------------- | ----------- | --------------- |
+| `label`    | `string`                               | -           | ボタンに表示するラベルテキスト |
+| `onClick`  | `() => void`                           | -           | クリック時のコールバック関数  |
+| `variant`  | `'primary' \| 'secondary' \| 'danger'` | `'primary'` | ボタンのスタイルバリエーション |
+| `size`     | `'small' \| 'medium' \| 'large'`       | `'medium'`  | ボタンのサイズ         |
+| `disabled` | `boolean`                              | `false`     | 無効状態            |
 
 ### Card
 
@@ -50,12 +62,12 @@ import { Card } from '@sample/react';
 
 **Props:**
 
-| Prop | 型 | デフォルト | 説明 |
-|------|------|---------|------|
-| `title` | `string` | - | カードのタイトル |
-| `children` | `ReactNode` | - | カードの内容 |
-| `footer` | `ReactNode` | - | カードのフッター（オプション） |
-| `width` | `string \| number` | - | カードの幅 |
+| Prop       | 型                  | デフォルト | 説明              |
+| ---------- | ------------------ | ----- | --------------- |
+| `title`    | `string`           | -     | カードのタイトル        |
+| `children` | `ReactNode`        | -     | カードの内容          |
+| `footer`   | `ReactNode`        | -     | カードのフッター（オプション） |
+| `width`    | `string \| number` | -     | カードの幅           |
 
 ## 開発
 
@@ -84,7 +96,7 @@ pnpm docs:api
 
 ## ディレクトリ構成
 
-```
+```text
 packages/sample-react/
 ├── src/
 │   ├── index.ts              # エクスポートエントリポイント
@@ -101,9 +113,9 @@ packages/sample-react/
 
 ## 技術スタック
 
-| ツール | バージョン | 用途 |
-|--------|-----------|------|
-| React | 19.x | UI ライブラリ |
-| TypeScript | 5.x | 型付け |
-| Vitest | - | テストフレームワーク |
-| Testing Library | - | テストユーティリティ |
+| ツール             | バージョン | 用途         |
+| --------------- | ----- | ---------- |
+| React           | 19.x  | UI ライブラリ   |
+| TypeScript      | 5.x   | 型付け        |
+| Vitest          | -     | テストフレームワーク |
+| Testing Library | -     | テストユーティリティ |

@@ -1,6 +1,6 @@
 # Interface: CardProps
 
-Defined in: Card.tsx:6
+Defined in: [Card.tsx:6](https://github.com/lc-semba-ryuichiro/sample-design-docs-docusaurus/blob/d174bf7afaf847d5ac1dab0da6d828b7a153982b/packages/sample-react/src/components/Card.tsx#L6)
 
 カードコンポーネントのプロパティ
 
@@ -10,7 +10,7 @@ Defined in: Card.tsx:6
 
 > **children**: `ReactNode`
 
-Defined in: Card.tsx:10
+Defined in: [Card.tsx:10](https://github.com/lc-semba-ryuichiro/sample-design-docs-docusaurus/blob/d174bf7afaf847d5ac1dab0da6d828b7a153982b/packages/sample-react/src/components/Card.tsx#L10)
 
 カードの内容
 
@@ -20,7 +20,7 @@ Defined in: Card.tsx:10
 
 > `optional` **footer**: `ReactNode`
 
-Defined in: Card.tsx:12
+Defined in: [Card.tsx:12](https://github.com/lc-semba-ryuichiro/sample-design-docs-docusaurus/blob/d174bf7afaf847d5ac1dab0da6d828b7a153982b/packages/sample-react/src/components/Card.tsx#L12)
 
 カードのフッター（オプション）
 
@@ -30,7 +30,7 @@ Defined in: Card.tsx:12
 
 > **title**: `string`
 
-Defined in: Card.tsx:8
+Defined in: [Card.tsx:8](https://github.com/lc-semba-ryuichiro/sample-design-docs-docusaurus/blob/d174bf7afaf847d5ac1dab0da6d828b7a153982b/packages/sample-react/src/components/Card.tsx#L8)
 
 カードのタイトル
 
@@ -40,6 +40,6 @@ Defined in: Card.tsx:8
 
 > `optional` **width**: `string` \| `number`
 
-Defined in: Card.tsx:14
+Defined in: [Card.tsx:14](https://github.com/lc-semba-ryuichiro/sample-design-docs-docusaurus/blob/d174bf7afaf847d5ac1dab0da6d828b7a153982b/packages/sample-react/src/components/Card.tsx#L14)
 
 カードの幅
