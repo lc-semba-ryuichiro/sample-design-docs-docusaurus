@@ -1,0 +1,61 @@
+# アーキテクチャ図テンプレート
+# システム構成を表現
+
+direction: right
+
+# クライアント層
+clients: クライアント {
+  web: Webブラウザ {
+    icon: https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/browser-chrome.svg
+  }
+  mobile: モバイルアプリ {
+    icon: https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/icons/phone.svg
+  }
+}
+
+# ロードバランサー
+lb: ロードバランサー {
+  shape: hexagon
+  style.fill: "#e1f5fe"
+}
+
+# アプリケーション層
+app: アプリケーション {
+  style.fill: "#e8f5e9"
+
+  api1: APIサーバー1
+  api2: APIサーバー2
+  worker: ワーカー
+}
+
+# データ層
+data: データストア {
+  style.fill: "#fff3e0"
+
+  primary: PostgreSQL {
+    shape: cylinder
+  }
+  replica: PostgreSQL Replica {
+    shape: cylinder
+  }
+  cache: Redis {
+    shape: cylinder
+    style.fill: "#ffcdd2"
+  }
+  queue: メッセージキュー {
+    shape: queue
+  }
+}
+
+# 接続
+clients.web -> lb
+clients.mobile -> lb
+lb -> app.api1
+lb -> app.api2
+app.api1 -> data.primary
+app.api2 -> data.primary
+app.api1 -> data.cache
+app.api2 -> data.cache
+data.primary -> data.replica: レプリケーション
+app.api1 -> data.queue: publish
+app.worker -> data.queue: subscribe

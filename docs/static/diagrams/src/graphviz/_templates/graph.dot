@@ -1,0 +1,50 @@
+// 無向グラフテンプレート
+// ネットワーク、関係図を表現
+
+graph NetworkDiagram {
+    // グラフ全体の設定
+    graph [
+        layout=neato
+        overlap=false
+        splines=true
+        fontname="Helvetica"
+        fontsize=12
+    ]
+
+    // ノードのデフォルト設定
+    node [
+        shape=ellipse
+        style=filled
+        fillcolor="#fff9c4"
+        fontname="Helvetica"
+        fontsize=10
+    ]
+
+    // エッジのデフォルト設定
+    edge [
+        fontname="Helvetica"
+        fontsize=9
+        color="#666666"
+    ]
+
+    // ノード定義
+    router [label="Router" shape=diamond fillcolor="#ffccbc"]
+    server1 [label="Server 1" shape=box fillcolor="#c8e6c9"]
+    server2 [label="Server 2" shape=box fillcolor="#c8e6c9"]
+    server3 [label="Server 3" shape=box fillcolor="#c8e6c9"]
+    client1 [label="Client A"]
+    client2 [label="Client B"]
+    client3 [label="Client C"]
+
+    // 接続関係
+    router -- server1 [label="1Gbps"]
+    router -- server2 [label="1Gbps"]
+    router -- server3 [label="1Gbps"]
+
+    server1 -- server2 [style=dashed label="sync"]
+    server2 -- server3 [style=dashed label="sync"]
+
+    client1 -- router
+    client2 -- router
+    client3 -- router
+}

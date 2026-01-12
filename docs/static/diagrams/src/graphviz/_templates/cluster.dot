@@ -1,0 +1,80 @@
+// クラスタ図テンプレート
+// グループ化構造を表現
+
+digraph ClusterDiagram {
+    // グラフ全体の設定
+    graph [
+        fontname="Helvetica"
+        fontsize=12
+        compound=true
+    ]
+
+    node [
+        shape=box
+        style="rounded,filled"
+        fillcolor="#e3f2fd"
+        fontname="Helvetica"
+        fontsize=10
+    ]
+
+    edge [
+        fontname="Helvetica"
+        fontsize=9
+    ]
+
+    // フロントエンド層
+    subgraph cluster_frontend {
+        label="Frontend Layer"
+        style=filled
+        fillcolor="#e8f5e9"
+
+        web [label="Web App"]
+        mobile [label="Mobile App"]
+    }
+
+    // API層
+    subgraph cluster_api {
+        label="API Layer"
+        style=filled
+        fillcolor="#fff3e0"
+
+        gateway [label="API Gateway"]
+        auth [label="Auth Service"]
+    }
+
+    // バックエンド層
+    subgraph cluster_backend {
+        label="Backend Layer"
+        style=filled
+        fillcolor="#fce4ec"
+
+        user_svc [label="User Service"]
+        order_svc [label="Order Service"]
+        notify_svc [label="Notification Service"]
+    }
+
+    // データ層
+    subgraph cluster_data {
+        label="Data Layer"
+        style=filled
+        fillcolor="#e1f5fe"
+
+        postgres [label="PostgreSQL" shape=cylinder]
+        redis [label="Redis" shape=cylinder]
+        queue [label="Message Queue" shape=parallelogram]
+    }
+
+    // 接続
+    web -> gateway
+    mobile -> gateway
+
+    gateway -> auth
+    gateway -> user_svc [lhead=cluster_backend]
+
+    user_svc -> postgres
+    order_svc -> postgres
+    order_svc -> redis
+    order_svc -> queue
+
+    notify_svc -> queue [dir=back]
+}

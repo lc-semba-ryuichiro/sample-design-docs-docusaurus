@@ -1,0 +1,36 @@
+@startuml sequence
+' シーケンス図テンプレート
+' オブジェクト間のやり取りを時系列で表現
+
+title シーケンス図タイトル
+
+actor User as user
+participant "Frontend" as frontend
+participant "API Gateway" as gateway
+participant "Backend" as backend
+database "Database" as db
+
+user -> frontend: リクエスト
+activate frontend
+
+frontend -> gateway: API呼び出し
+activate gateway
+
+gateway -> backend: 処理依頼
+activate backend
+
+backend -> db: クエリ実行
+activate db
+db --> backend: 結果
+deactivate db
+
+backend --> gateway: レスポンス
+deactivate backend
+
+gateway --> frontend: レスポンス
+deactivate gateway
+
+frontend --> user: 結果表示
+deactivate frontend
+
+@enduml

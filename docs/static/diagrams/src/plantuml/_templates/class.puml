@@ -1,0 +1,45 @@
+@startuml class
+' クラス図テンプレート
+' クラス構造、継承関係を表現
+
+title クラス図タイトル
+
+abstract class AbstractEntity {
+  # id: string
+  # createdAt: Date
+  # updatedAt: Date
+  + getId(): string
+}
+
+interface Repository<T> {
+  + findById(id: string): T
+  + findAll(): T[]
+  + save(entity: T): T
+  + delete(id: string): void
+}
+
+class User extends AbstractEntity {
+  - name: string
+  - email: string
+  + getName(): string
+  + getEmail(): string
+}
+
+class UserRepository implements Repository {
+  - dataSource: DataSource
+  + findById(id: string): User
+  + findAll(): User[]
+  + save(entity: User): User
+  + delete(id: string): void
+}
+
+class UserService {
+  - repository: UserRepository
+  + getUser(id: string): User
+  + createUser(data: CreateUserDto): User
+}
+
+UserService --> UserRepository : uses
+UserRepository ..> User : manages
+
+@enduml

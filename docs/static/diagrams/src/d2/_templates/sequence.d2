@@ -1,0 +1,27 @@
+# シーケンス図テンプレート
+# オブジェクト間通信を表現
+
+shape: sequence_diagram
+
+user: ユーザー {
+  shape: person
+}
+frontend: フロントエンド
+api: APIサーバー
+db: データベース {
+  shape: cylinder
+}
+
+user -> frontend: 1. リクエスト送信
+frontend -> api: 2. API呼び出し
+api -> db: 3. クエリ実行
+db -> api: 4. 結果返却
+api -> frontend: 5. レスポンス
+frontend -> user: 6. 画面表示
+
+# スパン（処理時間の表現）
+user."リクエスト処理" {
+  frontend."API通信" {
+    api."DB操作"
+  }
+}

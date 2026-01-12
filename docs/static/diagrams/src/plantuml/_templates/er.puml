@@ -1,0 +1,66 @@
+@startuml er
+' ER図テンプレート
+' データベース設計を表現
+
+title ER図タイトル
+
+entity "users" as users {
+  * id : uuid <<PK>>
+  --
+  * email : varchar(255) <<unique>>
+  * password_hash : varchar(255)
+  name : varchar(100)
+  * created_at : timestamp
+  * updated_at : timestamp
+}
+
+entity "organizations" as orgs {
+  * id : uuid <<PK>>
+  --
+  * name : varchar(255)
+  description : text
+  * created_at : timestamp
+  * updated_at : timestamp
+}
+
+entity "organization_members" as members {
+  * id : uuid <<PK>>
+  --
+  * organization_id : uuid <<FK>>
+  * user_id : uuid <<FK>>
+  * role : enum
+  * joined_at : timestamp
+}
+
+entity "projects" as projects {
+  * id : uuid <<PK>>
+  --
+  * organization_id : uuid <<FK>>
+  * name : varchar(255)
+  description : text
+  * status : enum
+  * created_at : timestamp
+  * updated_at : timestamp
+}
+
+entity "tasks" as tasks {
+  * id : uuid <<PK>>
+  --
+  * project_id : uuid <<FK>>
+  assignee_id : uuid <<FK>>
+  * title : varchar(255)
+  description : text
+  * status : enum
+  * priority : enum
+  due_date : date
+  * created_at : timestamp
+  * updated_at : timestamp
+}
+
+users ||--o{ members : "has"
+orgs ||--o{ members : "has"
+orgs ||--o{ projects : "owns"
+projects ||--o{ tasks : "contains"
+users ||--o{ tasks : "assigned to"
+
+@enduml

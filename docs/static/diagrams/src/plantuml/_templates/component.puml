@@ -1,0 +1,51 @@
+@startuml component
+' コンポーネント図テンプレート
+' システム構成要素を表現
+
+title コンポーネント図タイトル
+
+package "Frontend" {
+  [Web Application] as webapp
+  [Mobile App] as mobile
+}
+
+package "API Layer" {
+  [API Gateway] as gateway
+  [Auth Service] as auth
+}
+
+package "Backend Services" {
+  [User Service] as user
+  [Order Service] as order
+  [Notification Service] as notification
+}
+
+package "Data Layer" {
+  database "PostgreSQL" as postgres
+  database "Redis" as redis
+  queue "Message Queue" as mq
+}
+
+package "External" {
+  cloud "Email Provider" as email
+  cloud "Payment Gateway" as payment
+}
+
+webapp --> gateway : HTTPS
+mobile --> gateway : HTTPS
+
+gateway --> auth : verify token
+gateway --> user : /users/*
+gateway --> order : /orders/*
+
+user --> postgres : read/write
+order --> postgres : read/write
+order --> redis : cache
+order --> mq : publish
+
+notification --> mq : subscribe
+notification --> email : send
+
+order --> payment : process payment
+
+@enduml

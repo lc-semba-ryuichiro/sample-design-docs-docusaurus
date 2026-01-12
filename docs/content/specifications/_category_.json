@@ -1,0 +1,9 @@
+{
+  "label": "仕様書",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "slug": "specifications",
+    "description": "機能やAPIの詳細仕様ドキュメント。"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@sample/openapi",
+  "version": "0.0.0",
+  "private": true,
+  "description": "OpenAPI 仕様ファイル",
+  "scripts": {
+    "build": "bash scripts/build-all.sh",
+    "build:redoc": "bash scripts/build-redoc.sh",
+    "build:swagger": "bash scripts/build-swagger.sh",
+    "build:stoplight": "bash scripts/build-stoplight.sh",
+    "clean": "rm -rf ../../docs/static/api/openapi"
+  },
+  "devDependencies": {
+    "@redocly/cli": "catalog:"
+  }
+}

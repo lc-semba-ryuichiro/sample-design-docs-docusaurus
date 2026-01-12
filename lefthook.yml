@@ -1,0 +1,12 @@
+pre-commit:
+  parallel: true
+  commands:
+    convert-kroki:
+      glob: "docs/static/diagrams/src/**/*.{puml,dot,d2,mmd,diag,dt,excalidraw,nomnoml,pikchr,vg,bpmn,bytefield,dbml,dsl,bob,sv,tex,uxf,json,yaml,erd}"
+      run: |
+        for file in {staged_files}; do
+          output=$(mise exec -- bash docs/scripts/diagrams/convert-single.sh "$file")
+          if [ -n "$output" ]; then
+            git add "$output" 2>/dev/null || true
+          fi
+        done

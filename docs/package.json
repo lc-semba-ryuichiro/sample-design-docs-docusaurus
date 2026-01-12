@@ -1,0 +1,67 @@
+{
+  "name": "my-website",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc",
+    "test:scripts": "bats scripts/diagrams/__tests__/*.bats",
+    "test:scripts:verbose": "bats --verbose-run scripts/diagrams/__tests__/*.bats",
+    "diagrams:kroki": "mise exec -- bash scripts/diagrams/convert-all-kroki.sh",
+    "diagrams:all": "pnpm diagrams:kroki"
+  },
+  "dependencies": {
+    "@docusaurus/core": "catalog:",
+    "@docusaurus/plugin-client-redirects": "catalog:",
+    "@docusaurus/plugin-ideal-image": "catalog:",
+    "@docusaurus/plugin-pwa": "catalog:",
+    "@docusaurus/preset-classic": "catalog:",
+    "@docusaurus/theme-live-codeblock": "catalog:",
+    "@docusaurus/theme-mermaid": "catalog:",
+    "@easyops-cn/docusaurus-search-local": "catalog:",
+    "@mdx-js/react": "catalog:",
+    "clsx": "catalog:",
+    "docusaurus-plugin-image-zoom": "catalog:",
+    "docusaurus-plugin-typedoc": "catalog:",
+    "docusaurus-theme-github-codeblock": "catalog:",
+    "prism-js": "catalog:",
+    "prism-react-renderer": "catalog:",
+    "raw-loader": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "typedoc": "catalog:",
+    "typedoc-plugin-markdown": "catalog:"
+  },
+  "devDependencies": {
+    "@docusaurus/module-type-aliases": "catalog:",
+    "@docusaurus/tsconfig": "catalog:",
+    "@docusaurus/types": "catalog:",
+    "bats": "catalog:",
+    "bats-assert": "catalog:",
+    "bats-support": "catalog:",
+    "typescript": "catalog:"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=24.0"
+  }
+}

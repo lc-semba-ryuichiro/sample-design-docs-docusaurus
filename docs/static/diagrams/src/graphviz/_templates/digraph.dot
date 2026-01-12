@@ -1,0 +1,49 @@
+// 有向グラフテンプレート
+// 依存関係、フローを表現
+
+digraph DependencyGraph {
+    // グラフ全体の設定
+    graph [
+        rankdir=TB
+        fontname="Helvetica"
+        fontsize=12
+        bgcolor="white"
+    ]
+
+    // ノードのデフォルト設定
+    node [
+        shape=box
+        style="rounded,filled"
+        fillcolor="#e3f2fd"
+        fontname="Helvetica"
+        fontsize=10
+    ]
+
+    // エッジのデフォルト設定
+    edge [
+        fontname="Helvetica"
+        fontsize=9
+        color="#666666"
+    ]
+
+    // ノード定義
+    app [label="Application" fillcolor="#bbdefb"]
+    api [label="API Module"]
+    auth [label="Auth Module"]
+    db [label="Database Module"]
+    cache [label="Cache Module"]
+    logger [label="Logger Module" fillcolor="#c8e6c9"]
+    config [label="Config Module" fillcolor="#c8e6c9"]
+
+    // 依存関係（エッジ）
+    app -> api [label="uses"]
+    app -> auth
+    api -> db
+    api -> cache
+    api -> logger
+    auth -> db
+    auth -> logger
+    db -> config
+    cache -> config
+    logger -> config
+}

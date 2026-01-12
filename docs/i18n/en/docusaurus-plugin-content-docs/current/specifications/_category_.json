@@ -1,0 +1,9 @@
+{
+  "label": "Specifications",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "slug": "specifications",
+    "description": "Detailed feature and API specification documents."
+  }
+}

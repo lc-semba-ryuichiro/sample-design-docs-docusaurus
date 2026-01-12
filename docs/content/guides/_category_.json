@@ -1,0 +1,9 @@
+{
+  "label": "ガイド",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "slug": "guides",
+    "description": "開発者向けの手順書やベストプラクティス。"
+  }
+}

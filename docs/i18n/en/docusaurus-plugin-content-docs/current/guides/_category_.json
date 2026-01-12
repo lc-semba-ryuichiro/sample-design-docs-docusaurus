@@ -1,0 +1,9 @@
+{
+  "label": "Guides",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "slug": "guides",
+    "description": "Developer guides and best practices."
+  }
+}

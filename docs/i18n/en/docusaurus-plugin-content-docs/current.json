@@ -1,0 +1,54 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.docsSidebar.category.ADR": {
+    "message": "ADR",
+    "description": "The label for category 'ADR' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.ADR.link.generated-index.description": {
+    "message": "Architecture Decision Records - documenting architectural decisions.",
+    "description": "The generated-index page description for category 'ADR' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.アーキテクチャ": {
+    "message": "Architecture",
+    "description": "The label for category 'アーキテクチャ' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.アーキテクチャ.link.generated-index.description": {
+    "message": "System architecture documentation.",
+    "description": "The generated-index page description for category 'アーキテクチャ' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.仕様書": {
+    "message": "Specifications",
+    "description": "The label for category '仕様書' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.仕様書.link.generated-index.description": {
+    "message": "Detailed specifications for features and APIs.",
+    "description": "The generated-index page description for category '仕様書' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.ガイド": {
+    "message": "Guides",
+    "description": "The label for category 'ガイド' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.ガイド.link.generated-index.description": {
+    "message": "Developer guides and best practices.",
+    "description": "The generated-index page description for category 'ガイド' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Frontend": {
+    "message": "Frontend",
+    "description": "The label for category 'Frontend' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.Frontend.link.generated-index.description": {
+    "message": "Frontend (React/Next.js) design documentation.",
+    "description": "The generated-index page description for category 'Frontend' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.BFF": {
+    "message": "BFF",
+    "description": "The label for category 'BFF' in sidebar 'docsSidebar'"
+  },
+  "sidebar.docsSidebar.category.BFF.link.generated-index.description": {
+    "message": "Backend for Frontend (Node.js) design documentation.",
+    "description": "The generated-index page description for category 'BFF' in sidebar 'docsSidebar'"
+  }
+}

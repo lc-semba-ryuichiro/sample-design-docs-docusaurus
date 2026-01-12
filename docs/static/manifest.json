@@ -1,0 +1,17 @@
+{
+  "name": "Sample Design Docs",
+  "short_name": "Design Docs",
+  "description": "設計ドキュメントサイト",
+  "theme_color": "#25c2a0",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/img/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background-color: #5BC2DC;
+  color: #FFFFFF;
+}
+
+.heroBanner h1,
+.heroBanner p {
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ダークモード用ヒーローバナー - 明度を下げた配色 */
+:global([data-theme='dark']) .heroBanner {
+  background-color: #1A4A5A;
+  color: #E8F4F7;
+}
+
+:global([data-theme='dark']) .heroBanner h1,
+:global([data-theme='dark']) .heroBanner p {
+  color: #E8F4F7;
+}

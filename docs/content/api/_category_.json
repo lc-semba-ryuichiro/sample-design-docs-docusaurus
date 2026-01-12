@@ -1,0 +1,11 @@
+{
+  "label": "API リファレンス",
+  "position": 90,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "title": "API リファレンス",
+    "description": "TypeDoc および OpenAPI から自動生成された API ドキュメントです。"
+  }
+}

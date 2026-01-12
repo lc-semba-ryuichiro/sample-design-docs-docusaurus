@@ -1,0 +1,38 @@
+@startuml usecase
+' ユースケース図テンプレート
+' ユーザーとシステムの関係を表現
+
+title ユースケース図タイトル
+
+left to right direction
+
+actor "一般ユーザー" as user
+actor "管理者" as admin
+
+rectangle "システム名" {
+  usecase "ログイン" as UC1
+  usecase "ダッシュボード表示" as UC2
+  usecase "データ閲覧" as UC3
+  usecase "データ登録" as UC4
+  usecase "データ編集" as UC5
+  usecase "データ削除" as UC6
+  usecase "ユーザー管理" as UC7
+  usecase "システム設定" as UC8
+}
+
+user --> UC1
+user --> UC2
+user --> UC3
+user --> UC4
+
+admin --> UC1
+admin --> UC5
+admin --> UC6
+admin --> UC7
+admin --> UC8
+
+UC2 ..> UC1 : <<include>>
+UC3 ..> UC1 : <<include>>
+UC5 ..> UC3 : <<extend>>
+
+@enduml

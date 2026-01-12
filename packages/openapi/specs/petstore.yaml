@@ -1,0 +1,355 @@
+openapi: 3.0.3
+info:
+  title: Sample Pet Store API
+  description: |
+    サンプル API 仕様です。
+    OpenAPI ドキュメント生成のデモンストレーション用に作成されています。
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: support@example.com
+
+servers:
+  - url: https://api.example.com/v1
+    description: 本番環境
+  - url: https://staging-api.example.com/v1
+    description: ステージング環境
+
+tags:
+  - name: pets
+    description: ペット管理
+  - name: store
+    description: ストア管理
+
+paths:
+  /pets:
+    get:
+      tags:
+        - pets
+      summary: ペット一覧を取得
+      description: 登録されているペットの一覧を取得します。
+      operationId: listPets
+      parameters:
+        - name: limit
+          in: query
+          description: 取得する最大件数
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          description: スキップする件数
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: ペット一覧の取得に成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Pet'
+                  total:
+                    type: integer
+                    description: 総件数
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    post:
+      tags:
+        - pets
+      summary: 新しいペットを登録
+      description: 新しいペットを登録します。
+      operationId: createPet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePetRequest'
+      responses:
+        '201':
+          description: ペットの登録に成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /pets/{petId}:
+    get:
+      tags:
+        - pets
+      summary: 特定のペットを取得
+      description: 指定されたIDのペット情報を取得します。
+      operationId: getPet
+      parameters:
+        - name: petId
+          in: path
+          description: ペットID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: ペット情報の取得に成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    put:
+      tags:
+        - pets
+      summary: ペット情報を更新
+      description: 指定されたIDのペット情報を更新します。
+      operationId: updatePet
+      parameters:
+        - name: petId
+          in: path
+          description: ペットID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePetRequest'
+      responses:
+        '200':
+          description: ペット情報の更新に成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+    delete:
+      tags:
+        - pets
+      summary: ペットを削除
+      description: 指定されたIDのペットを削除します。
+      operationId: deletePet
+      parameters:
+        - name: petId
+          in: path
+          description: ペットID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: ペットの削除に成功
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /store/inventory:
+    get:
+      tags:
+        - store
+      summary: 在庫情報を取得
+      description: ペットの在庫情報を取得します。
+      operationId: getInventory
+      responses:
+        '200':
+          description: 在庫情報の取得に成功
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  schemas:
+    Pet:
+      type: object
+      required:
+        - id
+        - name
+        - status
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ペットの一意識別子
+          example: 1
+        name:
+          type: string
+          description: ペットの名前
+          example: "ポチ"
+        category:
+          type: string
+          description: ペットのカテゴリ
+          enum:
+            - dog
+            - cat
+            - bird
+            - other
+          example: "dog"
+        tags:
+          type: array
+          description: ペットのタグ
+          items:
+            type: string
+          example: ["かわいい", "元気"]
+        status:
+          type: string
+          description: ペットの販売状態
+          enum:
+            - available
+            - pending
+            - sold
+          example: "available"
+        createdAt:
+          type: string
+          format: date-time
+          description: 登録日時
+        updatedAt:
+          type: string
+          format: date-time
+          description: 更新日時
+
+    CreatePetRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: ペットの名前
+          minLength: 1
+          maxLength: 100
+          example: "ポチ"
+        category:
+          type: string
+          description: ペットのカテゴリ
+          enum:
+            - dog
+            - cat
+            - bird
+            - other
+        tags:
+          type: array
+          description: ペットのタグ
+          items:
+            type: string
+
+    UpdatePetRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: ペットの名前
+          minLength: 1
+          maxLength: 100
+        category:
+          type: string
+          description: ペットのカテゴリ
+          enum:
+            - dog
+            - cat
+            - bird
+            - other
+        tags:
+          type: array
+          description: ペットのタグ
+          items:
+            type: string
+        status:
+          type: string
+          description: ペットの販売状態
+          enum:
+            - available
+            - pending
+            - sold
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: エラーコード
+        message:
+          type: string
+          description: エラーメッセージ
+        details:
+          type: array
+          description: 詳細エラー情報
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              message:
+                type: string
+
+  responses:
+    BadRequest:
+      description: リクエストが不正です
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: "BAD_REQUEST"
+            message: "リクエストパラメータが不正です"
+
+    NotFound:
+      description: リソースが見つかりません
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: "NOT_FOUND"
+            message: "指定されたリソースが見つかりません"
+
+    InternalServerError:
+      description: サーバーエラーが発生しました
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: "INTERNAL_SERVER_ERROR"
+            message: "予期しないエラーが発生しました"

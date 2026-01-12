@@ -1,0 +1,46 @@
+@startuml state
+' 状態図テンプレート
+' 状態遷移を表現
+
+title 状態図タイトル
+
+[*] --> Draft : 作成
+
+state Draft {
+  [*] --> Editing
+  Editing --> Editing : 編集
+  Editing --> Ready : 完了
+}
+
+Draft --> PendingReview : 申請
+
+state PendingReview {
+  [*] --> UnderReview
+  UnderReview --> Approved : 承認
+  UnderReview --> Rejected : 却下
+}
+
+PendingReview --> Draft : 差し戻し
+
+state Approved {
+  [*] --> Scheduled
+  Scheduled --> Published : 公開日到来
+}
+
+Approved --> Active : 即時公開
+
+state Active {
+  [*] --> Live
+  Live --> Live : 更新
+}
+
+Active --> Archived : アーカイブ
+Active --> Draft : 非公開化
+
+state Archived {
+  [*] --> Stored
+}
+
+Archived --> [*] : 削除
+
+@enduml

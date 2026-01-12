@@ -1,0 +1,26 @@
+{
+  "homepage.button.docs": {
+    "message": "View Documentation"
+  },
+  "homepage.adr.title": {
+    "message": "ADR"
+  },
+  "homepage.adr.description": {
+    "message": "Document architecture decisions."
+  },
+  "homepage.architecture.title": {
+    "message": "Architecture"
+  },
+  "homepage.architecture.description": {
+    "message": "Explain system structure and design."
+  },
+  "homepage.guides.title": {
+    "message": "Guides"
+  },
+  "homepage.guides.description": {
+    "message": "Developer guides and best practices."
+  },
+  "homepage.link.details": {
+    "message": "View details →"
+  }
+}

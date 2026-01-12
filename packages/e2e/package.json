@@ -1,0 +1,21 @@
+{
+  "name": "@sample/e2e",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "playwright test -c playwright-ct.config.ts",
+    "test:ui": "playwright test -c playwright-ct.config.ts --ui",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/experimental-ct-react": "catalog:",
+    "@playwright/test": "catalog:",
+    "@sample/react": "workspace:*",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "typescript": "catalog:"
+  }
+}

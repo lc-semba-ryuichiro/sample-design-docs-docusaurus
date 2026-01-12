@@ -1,0 +1,43 @@
+#!/bin/bash
+# =============================================================================
+# docker - dockerコマンドモック
+# =============================================================================
+#
+# 概要:
+#   テスト時に実際のDockerを呼び出さないためのモックスクリプト。
+#   引数を記録し、成功/失敗をシミュレートする。
+#
+# 動作:
+#   1. 呼び出し時の引数を $TEST_DIR/.docker_args に追記
+#   2. MOCK_DOCKER_FAIL=1 が設定されている場合は終了コード1で終了
+#   3. 成功時は compose run コマンドの場合にメッセージを出力
+#
+# 環境変数:
+#   TEST_DIR: テスト用一時ディレクトリのパス（引数記録先）
+#   MOCK_DOCKER_FAIL: "1" に設定すると失敗をシミュレート
+# =============================================================================
+
+# 引数を記録（テストでの検証用）
+if [ -n "$TEST_DIR" ]; then
+  echo "docker $*" >> "${TEST_DIR}/.docker_args"
+fi
+
+# 失敗をシミュレート
+if [ "${MOCK_DOCKER_FAIL:-0}" = "1" ]; then
+  echo "Error: Cannot connect to the Docker daemon" >&2
+  exit 1
+fi
+
+# compose run の場合は成功メッセージを出力
+if [[ "$*" == *"compose run"* ]]; then
+  echo "Mock: drawio-export container executed successfully"
+  exit 0
+fi
+
+# compose up/down の場合も成功
+if [[ "$*" == *"compose up"* ]] || [[ "$*" == *"compose down"* ]]; then
+  exit 0
+fi
+
+# その他のコマンドも成功として扱う
+exit 0

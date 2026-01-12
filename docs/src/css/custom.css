@@ -1,0 +1,117 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  /* Primary - オレンジ系（ボタンなど） */
+  --ifm-color-primary: #EC7100;
+  --ifm-color-primary-dark: #d46600;
+  --ifm-color-primary-darker: #c86000;
+  --ifm-color-primary-darkest: #a54f00;
+  --ifm-color-primary-light: #ff7d0d;
+  --ifm-color-primary-lighter: #ff8a26;
+  --ifm-color-primary-lightest: #ffa452;
+
+  /* リンク色 */
+  --ifm-link-color: #0079D0;
+
+  /* 背景色 */
+  --ifm-background-color: #FFFFFF;
+  --ifm-background-surface-color: #F5F5F5;
+
+  /* ボーダー */
+  --ifm-hr-border-color: #D5D5D5;
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #FF9933;
+  --ifm-color-primary-dark: #ff8a1a;
+  --ifm-color-primary-darker: #ff8008;
+  --ifm-color-primary-darkest: #d66700;
+  --ifm-color-primary-light: #ffaa52;
+  --ifm-color-primary-lighter: #ffb566;
+  --ifm-color-primary-lightest: #ffc78f;
+
+  --ifm-link-color: #00BFEF;
+
+  /* ダークモード用背景色 */
+  --ifm-background-color: #1b1b1d;
+  --ifm-background-surface-color: #242526;
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* ナビバー - ブランドカラー */
+.navbar {
+  --ifm-navbar-background-color: #5BC2DC;
+  --ifm-navbar-link-color: #FFFFFF;
+  --ifm-navbar-link-hover-color: #FFF3EA;
+}
+
+.navbar__title {
+  color: #FFFFFF;
+}
+
+.navbar__logo {
+  filter: brightness(0) invert(1);
+}
+
+/* フッター - ブランドカラー */
+.footer--dark {
+  --ifm-footer-background-color: #5BC2DC;
+  --ifm-footer-link-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+.footer--dark .footer__title {
+  color: #FFFFFF;
+}
+
+.footer--dark .footer__copyright {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ダークモード用ナビバー - 明度を下げた配色 */
+[data-theme='dark'] .navbar {
+  --ifm-navbar-background-color: #1A4A5A;
+  --ifm-navbar-link-color: #E8F4F7;
+  --ifm-navbar-link-hover-color: #FFF3EA;
+}
+
+[data-theme='dark'] .navbar__title {
+  color: #E8F4F7;
+}
+
+[data-theme='dark'] .navbar__logo {
+  filter: brightness(0) invert(1);
+}
+
+/* ダークモード用フッター - 明度を下げた配色 */
+[data-theme='dark'] .footer--dark {
+  --ifm-footer-background-color: #1A4A5A;
+  --ifm-footer-link-color: #E8F4F7;
+  color: #E8F4F7;
+}
+
+[data-theme='dark'] .footer--dark .footer__title {
+  color: #E8F4F7;
+}
+
+[data-theme='dark'] .footer--dark .footer__copyright {
+  color: rgba(232, 244, 247, 0.8);
+}
+
+/* ダークモード用ヒーローバナー - 明度を下げた配色 */
+[data-theme='dark'] .hero--primary {
+  --ifm-hero-background-color: #1A4A5A;
+  --ifm-hero-text-color: #E8F4F7;
+  background-color: #1A4A5A;
+  color: #E8F4F7;
+}

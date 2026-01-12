@@ -1,0 +1,45 @@
+# フローチャートテンプレート
+# 処理の流れを表現
+
+direction: down
+
+start: 開始 {
+  shape: oval
+}
+
+input: 入力受付 {
+  shape: parallelogram
+}
+
+validate: バリデーション {
+  shape: diamond
+}
+
+process: メイン処理 {
+  shape: rectangle
+}
+
+error: エラー処理 {
+  shape: rectangle
+  style.fill: "#ffcccc"
+}
+
+output: 結果出力 {
+  shape: parallelogram
+}
+
+end: 終了 {
+  shape: oval
+}
+
+start -> input: 開始
+input -> validate: 入力データ
+validate -> process: 有効 {
+  style.stroke: green
+}
+validate -> error: 無効 {
+  style.stroke: red
+}
+error -> input: 再入力
+process -> output: 処理結果
+output -> end: 完了

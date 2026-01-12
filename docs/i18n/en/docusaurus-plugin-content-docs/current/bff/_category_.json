@@ -1,0 +1,9 @@
+{
+  "label": "BFF",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "slug": "bff",
+    "description": "Backend for Frontend (Node.js) design documentation."
+  }
+}

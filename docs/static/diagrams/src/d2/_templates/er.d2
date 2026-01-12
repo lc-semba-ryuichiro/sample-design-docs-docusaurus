@@ -1,0 +1,66 @@
+# ER図テンプレート
+# データモデルを表現
+
+direction: right
+
+users: users {
+  shape: sql_table
+  id: uuid {constraint: primary_key}
+  email: varchar(255) {constraint: unique}
+  password_hash: varchar(255)
+  name: varchar(100)
+  created_at: timestamp
+  updated_at: timestamp
+}
+
+organizations: organizations {
+  shape: sql_table
+  id: uuid {constraint: primary_key}
+  name: varchar(255)
+  description: text
+  created_at: timestamp
+  updated_at: timestamp
+}
+
+organization_members: organization_members {
+  shape: sql_table
+  id: uuid {constraint: primary_key}
+  organization_id: uuid {constraint: foreign_key}
+  user_id: uuid {constraint: foreign_key}
+  role: enum
+  joined_at: timestamp
+}
+
+projects: projects {
+  shape: sql_table
+  id: uuid {constraint: primary_key}
+  organization_id: uuid {constraint: foreign_key}
+  name: varchar(255)
+  description: text
+  status: enum
+  created_at: timestamp
+  updated_at: timestamp
+}
+
+tasks: tasks {
+  shape: sql_table
+  id: uuid {constraint: primary_key}
+  project_id: uuid {constraint: foreign_key}
+  assignee_id: uuid {constraint: foreign_key}
+  title: varchar(255)
+  description: text
+  status: enum
+  priority: enum
+  due_date: date
+  created_at: timestamp
+  updated_at: timestamp
+}
+
+# リレーション
+users -> organization_members: 1:N
+organizations -> organization_members: 1:N
+organizations -> projects: 1:N
+projects -> tasks: 1:N
+users -> tasks: 1:N {
+  style.stroke-dash: 3
+}

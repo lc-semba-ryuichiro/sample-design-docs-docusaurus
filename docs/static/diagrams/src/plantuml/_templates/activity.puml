@@ -1,0 +1,40 @@
+@startuml activity
+' アクティビティ図テンプレート
+' ワークフロー、処理フローを表現
+
+title アクティビティ図タイトル
+
+start
+
+:リクエスト受信;
+
+if (認証済み?) then (yes)
+  :トークン検証;
+
+  if (トークン有効?) then (yes)
+    :権限チェック;
+
+    if (権限あり?) then (yes)
+      :ビジネスロジック実行;
+
+      fork
+        :データ取得;
+      fork again
+        :キャッシュ確認;
+      end fork
+
+      :レスポンス生成;
+      :成功レスポンス返却;
+    else (no)
+      :403 Forbidden;
+    endif
+  else (no)
+    :401 Unauthorized;
+  endif
+else (no)
+  :ログインページへリダイレクト;
+endif
+
+stop
+
+@enduml

@@ -1,0 +1,59 @@
+#!/bin/bash
+# =============================================================================
+# kroki - kroki CLIモック
+# =============================================================================
+#
+# 概要:
+#   テスト時に実際のkrokiサーバーを呼び出さないためのモックスクリプト。
+#   引数を記録し、成功/失敗をシミュレートする。
+#
+# 動作:
+#   1. 呼び出し時の引数を $TEST_DIR/.kroki_args に追記
+#   2. MOCK_KROKI_FAIL=1 が設定されている場合は終了コード1で終了
+#   3. 成功時は -o オプションで指定された出力ファイルに空のSVGを生成
+#
+# 環境変数:
+#   TEST_DIR: テスト用一時ディレクトリのパス（引数記録先）
+#   MOCK_KROKI_FAIL: "1" に設定すると失敗をシミュレート
+# =============================================================================
+
+# 引数を記録（テストでの検証用）
+if [ -n "$TEST_DIR" ]; then
+  echo "kroki $*" >> "${TEST_DIR}/.kroki_args"
+fi
+
+# 失敗をシミュレート
+if [ "${MOCK_KROKI_FAIL:-0}" = "1" ]; then
+  echo "Error: Connection refused to kroki server" >&2
+  exit 1
+fi
+
+# 引数を解析して出力ファイルパスを取得
+output_file=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -o)
+      output_file="$2"
+      shift 2
+      ;;
+    convert)
+      shift
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
+# 出力ファイルが指定されている場合は空のSVGを生成
+if [ -n "$output_file" ]; then
+  mkdir -p "$(dirname "$output_file")"
+  cat > "$output_file" << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+  <text x="10" y="50">Mock SVG</text>
+</svg>
+EOF
+fi
+
+exit 0
